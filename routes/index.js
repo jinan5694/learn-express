@@ -10,11 +10,17 @@ router.get('/', function(req, res) {
 /* list demo */
 
 router.get('/list', function(req, res) {
-	var data = {
-		name: 'jinan',
-		sex: 'male'
-	};
-  res.render('list', data);
+	var list = [];
+	for(var i=0;i<10;i++){
+		list.push({
+			id: i,
+			name: 'name' + i,
+			pwd: 'pwd' + i,
+			desc: 'desc' + i,
+			remark: 'remark' + i
+		});
+	}
+  res.render('list', {list: list});
 });
 
 module.exports = router;
