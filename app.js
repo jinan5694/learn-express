@@ -1,4 +1,4 @@
-// github test
+
 
 var express = require('express');
 var path = require('path');
@@ -15,12 +15,13 @@ var app = express();
 
 // view engine setup
 
-app.engine('handlebars', exphbs({
+app.engine('.hbs', exphbs({
   defaultLayout: 'main',
-  partialsDir: ['views/partials/']
+  partialsDir: ['views/partials/'],
+  extname: '.hbs'
 }));
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'handlebars');
+app.set('view engine', '.hbs');
 
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
