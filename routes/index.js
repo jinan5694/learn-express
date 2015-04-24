@@ -4,6 +4,7 @@ var router = express.Router();
 /* GET home page. */
 
 router.get('/', function(req, res) {
+	console.log(req.session);
   res.render('index', { title: 'Express' });
 });
 
@@ -19,13 +20,17 @@ router.get('/login', function(req, res) {
 router.post('/login', function(req, res) {
 	console.log('post login');
 	console.log(req.body); // req.body 可以取到form中的参数
-	res.render('login', {layout: 'login'});
+	req.session.user = req.body;
+	res.redirect('/');
 });
 
 
 /* list demo */
 
 router.get('/list', function(req, res) {
+	console.log('------------------------------------');
+	console.log(req.session);
+	console.log('------------------------------------');
 	var list = [];
 	for(var i=0;i<10;i++){
 		list.push({
