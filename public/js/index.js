@@ -14,10 +14,10 @@ function getUser(){
 
 function addUser(){
   var user = {
-    name: 'jinan',
+    name: 'jishuang',
     pwd: '123'
   }
-  ajax('POST', 'users', user, function(data){
+  ajax('POST', '/ajax/users', user, function(data){
     console.log(data);
     alert('add user');
   });
@@ -28,14 +28,14 @@ function updateUser(){
     name: 'jinan',
     pwd: '123'
   }
-  ajax('PUT', 'users/12', user, function(data){
+  ajax('PUT', '/ajax/users/12', user, function(data){
     console.log(data);
     alert('update user');
   });
 }
 
 function deleteUser(){
-  ajax('DELETE', 'users/12', {}, function(data){
+  ajax('DELETE', '/ajax/users/124', {}, function(data){
     console.log(data);
     alert('delete user');
   });
@@ -52,8 +52,7 @@ function ajax(type, url, data, callback) {
       alert('ajax error');
     },
     success: function(data) {
-      console.log(data);
-      callback();
+      callback(data);
     }
   });
 }

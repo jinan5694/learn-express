@@ -12,9 +12,24 @@ router.get('/users', function(req, res) {
 
 router.get('/users/:id', function(req, res) {
 	var id = req.params[0];
-	console.log(id);
-	res.render('ajax/ajax',{id: id, name: 'ajax name'});
-  
+	res.json({name: 'jinan'});
+});
+
+router.post('/users', function(req, res) {
+	var name = req.body.name;
+	res.json({name: name});
+});
+
+router.put('/users/:id', function(req, res) {
+	var id = req.params.id;
+	console.log(req.params);
+	console.log(req.body);
+	res.json({id: id,name: req.body.name});
+});
+
+router.delete('/users/:id', function(req, res) {
+	var id = req.params.id;
+	res.json({id: id});
 });
 
 module.exports = router;
