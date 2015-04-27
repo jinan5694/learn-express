@@ -1,12 +1,12 @@
 function queryUsers(){
-  ajax('GET', 'users', {}, function(data){
+  ajax('GET', '/ajax/users', {}, function(data){
     console.log(data);
     alert('query users');
   });
 }
 
 function getUser(){
-  ajax('GET', 'users/12', {}, function(data){
+  ajax('GET', '/ajax/users/12', {}, function(data){
     console.log(data);
     alert('get user');
   });
