@@ -1,1 +1,59 @@
-console.log('index');
+function queryUsers(){
+  ajax('GET', 'users', {}, function(data){
+    console.log(data);
+    alert('query users');
+  });
+}
+
+function getUser(){
+  ajax('GET', 'users/12', {}, function(data){
+    console.log(data);
+    alert('get user');
+  });
+}
+
+function addUser(){
+  var user = {
+    name: 'jinan',
+    pwd: '123'
+  }
+  ajax('POST', 'users', user, function(data){
+    console.log(data);
+    alert('add user');
+  });
+}
+
+function updateUser(){
+  var user = {
+    name: 'jinan',
+    pwd: '123'
+  }
+  ajax('PUT', 'users/12', user, function(data){
+    console.log(data);
+    alert('update user');
+  });
+}
+
+function deleteUser(){
+  ajax('DELETE', 'users/12', {}, function(data){
+    console.log(data);
+    alert('delete user');
+  });
+}
+
+function ajax(type, url, data, callback) {
+  $.ajax({
+    cache: true,
+    type: type,
+    url: url,
+    data: data,
+    async: true,
+    error: function(request) {
+      alert('ajax error');
+    },
+    success: function(data) {
+      console.log(data);
+      callback();
+    }
+  });
+}

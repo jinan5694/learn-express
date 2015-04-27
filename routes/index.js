@@ -5,7 +5,7 @@ var router = express.Router();
 
 router.get('/', function(req, res) {
 	console.log(req.session);
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Express', session: req.session });
 });
 
 /* login demo */
@@ -23,14 +23,17 @@ router.post('/login', function(req, res) {
 	req.session.user = req.body;
 	res.redirect('/');
 });
+/* logout */
+router.get('/logout', function(req, res) {
+	console.log('get logout');
+	delete req.session.user;
+	res.redirect('/login');
+});
 
 
 /* list demo */
 
 router.get('/list', function(req, res) {
-	console.log('------------------------------------');
-	console.log(req.session);
-	console.log('------------------------------------');
 	var list = [];
 	for(var i=0;i<10;i++){
 		list.push({
@@ -43,5 +46,6 @@ router.get('/list', function(req, res) {
 	}
   res.render('list', {list: list});
 });
+
 
 module.exports = router;
