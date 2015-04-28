@@ -19,6 +19,7 @@ function addUser(){
   }
   ajax('POST', '/ajax/users', user, function(data){
     console.log(data);
+    console.log(typeof data);
     alert('add user');
   });
 }

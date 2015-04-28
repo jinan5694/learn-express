@@ -42,7 +42,8 @@ router.get('/httpGet', function(req, res) {
 	  if (!error && response.statusCode == 200) {
 	    //console.log(body); // Show the HTML for the Google homepage.
 	    console.log(body);
-	    res.json(body.data);
+	    console.log('type:'+ typeof body);
+	    res.json(body);
 	    console.log('request end.');
 	  }
 	});
