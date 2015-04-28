@@ -1,4 +1,5 @@
 var express = require('express');
+var request = require('request');
 var router = express.Router();
 
 /* ajax demo. */
@@ -30,6 +31,22 @@ router.put('/users/:id', function(req, res) {
 router.delete('/users/:id', function(req, res) {
 	var id = req.params.id;
 	res.json({id: id});
+});
+
+// http interface test
+router.get('/httpGet', function(req, res) {
+	console.log('router start.');
+	request('http://127.0.0.1:3000/server/items', function (error, response, body) {
+		console.log('request start.');
+		console.log(response.statusCode);
+	  if (!error && response.statusCode == 200) {
+	    //console.log(body); // Show the HTML for the Google homepage.
+	    console.log(body);
+	    res.json(body.data);
+	    console.log('request end.');
+	  }
+	});
+	console.log('router end.');
 });
 
 module.exports = router;

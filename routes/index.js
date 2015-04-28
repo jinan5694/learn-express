@@ -1,9 +1,22 @@
 var express = require('express');
+var http = require('http');
 var router = express.Router();
 
 /* GET home page. */
 
 router.get('/', function(req, res) {
+	// 接口调用测试
+	http.get('http://121.40.127.12:8080/CM-workflow-server/queryList1',function(res){
+    console.log('get response Code :' + res.statusCode);
+    res.setEncoding('utf8');
+    res.on('data', function(data){
+    	console.log('-----------------------------------------------------');
+    	console.log(data);
+    	console.log('-----------------------------------------------------');
+    });
+	}).on('error',function(e){
+        console.log("Got error: " + e.message);
+  });
 	console.log(req.session);
   res.render('index', { title: 'Express', session: req.session });
 });

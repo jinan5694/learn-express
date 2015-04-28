@@ -41,6 +41,13 @@ function deleteUser(){
   });
 }
 
+function httpGet(){
+  ajax('GET', '/ajax/httpGet', {}, function(data){
+    console.log(data);
+    alert('httpGet');
+  });
+}
+
 function ajax(type, url, data, callback) {
   $.ajax({
     cache: true,
