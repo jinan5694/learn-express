@@ -14,10 +14,10 @@ var filter = require('./lib/filter/loginFilter');
 var routes = require('./routes/index');
 var users = require('./routes/user');
 var ajax = require('./routes/ajax');
+var server = require('./routes/server');
 
 var app = express();
   
-console.log('mountpath:'+app.mountpath); // /admin
 // view engine setup
 
 app.engine('.hbs', exphbs({
@@ -42,10 +42,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // use session
 app.use(session({
-  secret: 'jinan'
+  secret: 'jinan',
+  resave: false,
+  saveUninitialized: true
 }));
 
-app.use(filter());
+//app.use(filter());
 app.use(function(req, res, next) {
   if(req.session.user){
     console.log('user:' + req.session.user);
@@ -58,6 +60,7 @@ app.use(function(req, res, next) {
 app.use('/', routes);
 app.use('/users', users);
 app.use('/ajax', ajax);
+app.use('/server', server);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
