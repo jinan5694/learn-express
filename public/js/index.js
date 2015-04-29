@@ -1,3 +1,10 @@
+var user = {
+    'name': '纪南',
+    'pwd': '123456'
+  };
+
+/* 请求路由测试 */
+
 function queryUsers(){
   ajax('GET', '/ajax/users', {}, function(data){
     console.log(data);
@@ -13,10 +20,6 @@ function getUser(){
 }
 
 function addUser(){
-  var user = {
-    name: 'jishuang',
-    pwd: '123'
-  }
   ajax('POST', '/ajax/users', user, function(data){
     console.log(data);
     console.log(typeof data);
@@ -25,10 +28,6 @@ function addUser(){
 }
 
 function updateUser(){
-  var user = {
-    name: 'jinan',
-    pwd: '123'
-  }
   ajax('PUT', '/ajax/users/12', user, function(data){
     console.log(data);
     alert('update user');
@@ -42,10 +41,40 @@ function deleteUser(){
   });
 }
 
+/* 请求http接口测试 */
+
 function httpGet(){
-  ajax('GET', '/ajax/httpGet', {}, function(data){
+  ajax('GET', '/ajax/http', {}, function(data){
     console.log(data);
     alert('httpGet');
+  });
+}
+
+function httpGetById(id){
+  ajax('GET', '/ajax/http/' + id, {}, function(data){
+    console.log(data);
+    alert('httpGetById');
+  });
+}
+
+function httpPost(){
+  ajax('POST', '/ajax/http', user, function(data){
+    console.log(data);
+    alert('httpPost');
+  });
+}
+
+function httpPut(id){
+  ajax('PUT', '/ajax/http/' + id, user, function(data){
+    console.log(data);
+    alert('httpPut');
+  });
+}
+
+function httpDel(id){
+  ajax('GET', '/ajax/http/' + id, {}, function(data){
+    console.log(data);
+    alert('httpDel');
   });
 }
 

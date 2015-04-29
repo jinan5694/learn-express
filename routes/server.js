@@ -4,8 +4,8 @@ var router = express.Router();
 /* 模拟http服务器，返回json格式数据. */
 
 var item = {
-	name: 'name',
-	description: 'this is a item.'
+	'name': '纪南',
+	'description': 'this is a item.'
 };
 
 router.get('/items', function(req, res) {

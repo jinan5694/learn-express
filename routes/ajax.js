@@ -34,20 +34,74 @@ router.delete('/users/:id', function(req, res) {
 });
 
 // http interface test
-router.get('/httpGet', function(req, res) {
-	console.log('router start.');
-	request('http://127.0.0.1:3000/server/items', function (error, response, body) {
-		console.log('request start.');
-		console.log(response.statusCode);
+
+router.get('/http', function(req, res) {
+	var options = {
+		method: 'GET',
+		uri: 'http://127.0.0.1:3000/server/items',
+		json: true
+	};
+	request.get(options, function (error, response, body) {
 	  if (!error && response.statusCode == 200) {
-	    //console.log(body); // Show the HTML for the Google homepage.
-	    console.log(body);
-	    console.log('type:'+ typeof body);
 	    res.json(body);
-	    console.log('request end.');
 	  }
 	});
-	console.log('router end.');
+});
+
+router.get('/http/:id', function(req, res) {
+	var options = {
+		method: 'GET',
+		uri: 'http://127.0.0.1:3000/server/items/'+req.params.id,
+		json: true,
+		body: req.body
+	};
+	request.get(options, function (error, response, body) {
+	  if (!error && response.statusCode == 200) {
+	    res.json(body);
+	  }
+	});
+});
+
+router.post('/http', function(req, res) {
+	var options = {
+		method: 'POST',
+		uri: 'http://127.0.0.1:3000/server/items',
+		json: true,
+		body: req.body
+	};
+	request.post(options, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			res.json(body);
+		}
+	});
+});
+
+router.put('/http/:id', function(req, res) {
+	console.log('http put--------------------------------');
+	var options = {
+		method: 'PUT',
+		uri: 'http://127.0.0.1:3000/server/items/'+req.params.id,
+		json: true,
+		body: req.body
+	};
+	request.put(options, function (error, response, body) {
+	  if (!error && response.statusCode == 200) {
+	    res.json(body);
+	  }
+	});
+});
+
+router.delete('/http/:id', function(req, res) {
+	var options = {
+		method: 'DELETE',
+		uri: 'http://127.0.0.1:3000/server/items/'+req.params.id,
+		json: true
+	};
+	request.del(options, function (error, response, body) {
+	  if (!error && response.statusCode == 200) {
+	    res.json(body);
+	  }
+	});
 });
 
 module.exports = router;
