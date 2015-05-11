@@ -60,5 +60,9 @@ router.get('/list', function(req, res) {
   res.render('list', {list: list});
 });
 
+router.get('/debug', function(req, res) {
+	res.render('debug', {pid: process.pid});
+});
+
 
 module.exports = router;
